@@ -1,11 +1,7 @@
 <template>
 <div id="app">
-    <!-- <button @click="increaseCount">Increase Count</button>
-    <br>
-    count: {{count}}<br> -->
-
+    <h2>Todos ( {{completedTodosCount}} )</h2>
     {{completedTodos}}
-
 </div>
 </template>
 
@@ -22,8 +18,11 @@ export default {
     },
     computed: {
         completedTodos() {
-            console.log(this.$store.getters.completedTodos);
+            // getters are returned using computed functions
             return this.$store.getters.completedTodos;
+        },
+        completedTodosCount() {
+            return this.$store.getters.completedTodosCount;
         },
         ...mapState({
             count: 'count'
