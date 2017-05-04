@@ -24,10 +24,10 @@ export default {
         // completedTodosCount() {
         //     return this.$store.getters.completedTodosCount;
         // },
-        ...mapGetters({
-            completedTodos: 'completedTodos',
-            completedTodosCount: 'completedTodosCount'
-        })
+        ...mapGetters([
+            'completedTodos',
+            'completedTodosCount'
+        ])
     },
     methods: {
         increaseCount() {
