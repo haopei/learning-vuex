@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    // string must match this property name
     count: 0
   },
   mutations: {

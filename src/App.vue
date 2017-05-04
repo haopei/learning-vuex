@@ -18,13 +18,13 @@ export default {
             localCount: 10
         }
     },
-    computed: mapState({
-        // Retrieving store state using alias:
-        // the 'count' string refers to the `count` property inside this.$store.state
-        // this is same:
-        //   count: state => state.count
-        count: 'count'
-    }),
+    computed: mapState([
+        // maps this.count to `this.$store.state.count`
+        // notes:
+        //  1. String must match the name of the property to be retrieved from store
+        //  2. This is an array; not an object
+        'count'
+    ]),
     methods: {
         increaseCount() {
             this.$store.state.count++;
