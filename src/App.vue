@@ -3,6 +3,7 @@
     <button @click="increaseCount">Increase Count</button>
     <br>
     count: {{count}}<br>
+    local computed value: {{localComputed}}
 
 </div>
 </template>
@@ -18,13 +19,18 @@ export default {
             localCount: 10
         }
     },
-    computed: mapState([
-        // maps this.count to `this.$store.state.count`
+    computed: {
+        // combining mapState() with local computed values
         // notes:
-        //  1. String must match the name of the property to be retrieved from store
-        //  2. This is an array; not an object
-        'count'
-    ]),
+        //   1. mapState returns an object
+        //   2. spread operator requires babel-preset-stage-2 as dev dependency
+        localComputed() {
+            return 6;
+        },
+        ...mapState({
+            count: 'count'
+        })
+    },
     methods: {
         increaseCount() {
             this.$store.state.count++;
