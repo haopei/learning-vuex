@@ -7,7 +7,7 @@
 
 <script>
 
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'app',
@@ -17,15 +17,16 @@ export default {
         }
     },
     computed: {
-        completedTodos() {
-            // getters are returned using computed functions
-            return this.$store.getters.completedTodos;
-        },
-        completedTodosCount() {
-            return this.$store.getters.completedTodosCount;
-        },
-        ...mapState({
-            count: 'count'
+        // completedTodos() {
+        //     // getters are returned using computed functions
+        //     return this.$store.getters.completedTodos;
+        // },
+        // completedTodosCount() {
+        //     return this.$store.getters.completedTodosCount;
+        // },
+        ...mapGetters({
+            completedTodos: 'completedTodos',
+            completedTodosCount: 'completedTodosCount'
         })
     },
     methods: {
