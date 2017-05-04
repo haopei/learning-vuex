@@ -1,9 +1,10 @@
 <template>
 <div id="app">
-    <button @click="increaseCount">Increase Count</button>
+    <!-- <button @click="increaseCount">Increase Count</button>
     <br>
-    count: {{count}}<br>
-    local computed value: {{localComputed}}
+    count: {{count}}<br> -->
+
+    {{completedTodos}}
 
 </div>
 </template>
@@ -20,12 +21,9 @@ export default {
         }
     },
     computed: {
-        // combining mapState() with local computed values
-        // notes:
-        //   1. mapState returns an object
-        //   2. spread operator requires babel-preset-stage-2 as dev dependency
-        localComputed() {
-            return 6;
+        completedTodos() {
+            console.log(this.$store.getters.completedTodos);
+            return this.$store.getters.completedTodos;
         },
         ...mapState({
             count: 'count'
