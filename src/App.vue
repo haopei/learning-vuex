@@ -3,7 +3,6 @@
     <button @click="increaseCount">Increase Count</button>
     <br>
     count: {{count}}<br>
-    countPlusLocalState: {{countPlusLocalState}}
 
 </div>
 </template>
@@ -20,18 +19,15 @@ export default {
         }
     },
     computed: mapState({
-        count: (state) => state.count,
-        countPlusLocalState(state) {
-            // to combine a local state with store state,
-            // we must put this inside a function
-            // where 'this' is proxied here to represent this Vue Component instance
-            // Note: this is a function (compared to 'count' above which references an arrow function)
-            return this.localCount + state.count
-        }
+        // Retrieving store state using alias:
+        // the 'count' string refers to the `count` property inside this.$store.state
+        // this is same:
+        //   count: state => state.count
+        count: 'count'
     }),
     methods: {
         increaseCount() {
-            console.log(this.$store.state.count++);
+            this.$store.state.count++;
         }
     }
 }
