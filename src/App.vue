@@ -3,10 +3,7 @@
     <button @click="increaseCount">Increase Count</button>
     <br>
     count: {{count}}<br>
-    state.count + this.localCount: {{countPlusLocalState}}
-
-    {{something}}
-
+    countPlusLocalState: {{countPlusLocalState}}
 
 </div>
 </template>
@@ -15,8 +12,6 @@
 
 import { mapState } from 'vuex';
 
-console.log(mapState);
-
 export default {
     name: 'app',
     data() {
@@ -24,19 +19,14 @@ export default {
             localCount: 10
         }
     },
-    // For comparison: Retrieving state values without `mapState`:
-    // computed: {
-    //     count() {
-    //         return this.$store.state.count;
-    //     }
-    // },
     computed: mapState({
         count: (state) => state.count,
         countPlusLocalState(state) {
             // to combine a local state with store state,
             // we must put this inside a function
             // where 'this' is proxied here to represent this Vue Component instance
-            return this.localCount + state.count;
+            // Note: this is a function (compared to 'count' above which references an arrow function)
+            return this.localCount + state.count
         }
     }),
     methods: {
@@ -46,6 +36,8 @@ export default {
     }
 }
 </script>
+
+
 
 <style lang="scss">
 #app {
